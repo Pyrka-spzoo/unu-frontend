@@ -19,5 +19,36 @@ class WSConnector {
         this.webSocket.send(JSON.stringify(msg));
     }
 
+    myInfo(){
+        const msg = {
+            message: "myInfo"
+        };
+        this.webSocket.send(JSON.stringify(msg));
+    }
+
+}
+
+const WS_LOGGER = {
+    error: (payload) => {
+        console.log(payload)
+    },
+    myInfo: (payload) => {
+        console.log(payload)
+    },
+    listRoom: (payload) => {
+        console.table(payload)
+    },
+    listPlayers: (payload) => {
+        console.table(payload)
+    },
+    newRoom: (payload)=>{
+        console.log(payload)
+    },
+    createRoom: (payload)=>{
+        console.log(payload)
+    },
+    join: (payload)=>{
+        console.log(payload)
+    },
 
 }

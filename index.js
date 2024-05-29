@@ -5,9 +5,8 @@ const HAND2 = document.getElementById('hand2')
 const STACK = document.getElementById('stack')
 const SYMBOLS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+2', 'skip', 'reverse']
 const COLORS = ['red', 'green', 'blue', 'yellow']
-const WS_LOGGER = {newRoom: (data)=>console.log(data)}
 
-let tak = new WSConnector('ws://localhost:8080/ws',[WS_LOGGER])
+let ws = new WSConnector('ws://localhost:8080/ws',[WS_LOGGER])
 
 
 let myCards = []
@@ -47,7 +46,7 @@ function createRoom() {
     const nickname = nicknameelem.value
 
     // ws.send(JSON.stringify({ type: 'createRoom', nickname }))
-    tak.createRoom()
+    ws.createRoom()
 }
 
 function joinRoom(){
@@ -55,7 +54,7 @@ function joinRoom(){
     const nicknameelem = document.getElementById('name')
     const roomid = roomidelem.value
     const nickname = nicknameelem.value
-
+    ws.myInfo()
     // ws.send(JSON.stringify({ type: 'joinRoom', roomid, nickname }))
 }
 
