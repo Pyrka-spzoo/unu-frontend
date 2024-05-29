@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="menu">
+    <button onclick="connect()">Connect</button>
+    <br>
+    <input type="text" name="name" id="name" placeholder="nickname" value="Fluffy boi :3">
+    <button onclick="createRoom()">Create room</button>
+    <br>
+    <input type="text" name="room" id="room" placeholder="room" value="a">
+    <button onclick="joinRoom()">Join room</button>
+</div>
+
+<div id="stack">
+
+</div>
+
+<div id="myCards">
+
+</div>
+
+<div id="hand1" class="horizontalHand"></div>
+<div id="hand2" class="verticalHand"></div>
+
+<template id="cardTemplate">
+    <div class="card">
+        <h3></h3>
+        <p></p>
+    </div>
+</template>
+
+<script src="index.js"></script>
+
+<style>
+    body{
+        margin: 0;
+    }
+
+    #menu{
+        background: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 10;
+    }
+
+    #myCards{
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card{
+        width: 100px;
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        aspect-ratio: 9/16;
+        margin-left: -20px;
+        transition: all 100ms;
+        border: 2px solid white;
+    }
+
+    .card.flipped{
+        transform: rotateY(180deg);
+    }
+
+    #myCards .card:hover{
+        transform: translateY(-10px);
+        margin-left: 0;
+        margin-right: 20px;
+    }
+
+    #stack{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .horizontalHand{
+        display: flex;
+        justify-content: center;
+    }
+
+    .verticalHand{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #hand1{
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    #hand2{
+        position: absolute;
+        top: 0;
+        left:0;
+        height: 100%;
+    }
+</style>
+
+</body>
+</html>
