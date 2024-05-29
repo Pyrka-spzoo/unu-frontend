@@ -5,44 +5,49 @@ const HAND2 = document.getElementById('hand2')
 const STACK = document.getElementById('stack')
 const SYMBOLS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+2', 'skip', 'reverse']
 const COLORS = ['red', 'green', 'blue', 'yellow']
+const WS_LOGGER = {newRoom: (data)=>console.log(data)}
+
+let tak = new WSConnector('ws://localhost:8080/ws',[WS_LOGGER])
+
 
 let myCards = []
 
 let state = 'menu'
 let room = null
-let ws
-function connect(){
-    ws = new WebSocket('ws://localhost:8080')
-    ws.onopen = () => console.log('Connected')
-    ws.onclose = () => {
-        console.log('Disconnected')
-        room = null
-        state = 'menu'
+// let ws
+// function connect(){
+//     ws = new WebSocket('ws://localhost:8080')
+//     ws.onopen = () => console.log('Connected')
+//     ws.onclose = () => {
+//         console.log('Disconnected')
+//         room = null
+//         state = 'menu'
+//
+//         setTimeout(connect, 1000)
+//     }
+//
+//     ws.onmessage = (event) => {
+//         const data = JSON.parse(event.data)
+//         console.log(data)
+//
+//         switch (data.type) {
+//             case 'roomState': {
+//                 state = 'room'
+//                 room = data.state
+//                 break
+//             }
+//         }
+//     }
+// }
 
-        setTimeout(connect, 1000)
-    }
-
-    ws.onmessage = (event) => {
-        const data = JSON.parse(event.data)
-        console.log(data)
-
-        switch (data.type) {
-            case 'roomState': {
-                state = 'room'
-                room = data.state
-                break
-            }
-        }
-    }
-}
-
-setTimeout(connect, 100)
+// setTimeout(connect, 100)
 
 function createRoom() {
     const nicknameelem = document.getElementById('name')
     const nickname = nicknameelem.value
 
-    ws.send(JSON.stringify({ type: 'createRoom', nickname }))
+    // ws.send(JSON.stringify({ type: 'createRoom', nickname }))
+    tak.createRoom()
 }
 
 function joinRoom(){
@@ -51,7 +56,7 @@ function joinRoom(){
     const roomid = roomidelem.value
     const nickname = nicknameelem.value
 
-    ws.send(JSON.stringify({ type: 'joinRoom', roomid, nickname }))
+    // ws.send(JSON.stringify({ type: 'joinRoom', roomid, nickname }))
 }
 
 function updateMyCards() {
